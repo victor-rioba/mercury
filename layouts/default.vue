@@ -1,6 +1,6 @@
 <template>
   <div class="hidden md:flex w-screen h-screen">
-    <PageNavbar />
+    <PageNav />
     <UCard class="p-4 w-full h-screen overflow-y-auto">
       <PageBreadcrumbs v-if="useRoute().name !== 'index'" />
       <slot />
