@@ -19,6 +19,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.145",
     "@nuxt/ui": "^2.10.0",
     "dotenv": "^16.3.1",
     "knex": "^3.0.1",
