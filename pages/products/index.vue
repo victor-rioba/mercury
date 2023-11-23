@@ -358,12 +358,13 @@ const data = [
 const selected = ref([]);
 
 function select(row) {
-  const index = selected.value.findIndex((item) => item.id === row.id);
-  if (index === -1) {
-    selected.value.push(row);
-  } else {
-    selected.value.splice(index, 1);
-  }
+  // const index = selected.value.findIndex((item) => item.id === row.id);
+  // if (index === -1) {
+  //   selected.value.push(row);
+  // } else {
+  //   selected.value.splice(index, 1);
+  // }
+  useRouter().push(`/products/${row.id}`);
 }
 
 const action = ref("");
@@ -439,8 +440,8 @@ const items = (row) => [
       >
         <UButton
           icon="i-heroicons-plus-20-solid"
-          :trailing="true"
           label="Add Product"
+          to="/products/add"
         />
         <div class="flex items-center gap-1.5">
           <span class="text-sm leading-5">Rows per page:</span>
@@ -481,7 +482,7 @@ const items = (row) => [
         <UBadge
           size="xs"
           :label="row.category"
-          color="green"
+          color="viking"
           variant="subtle"
         />
       </template>
