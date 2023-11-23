@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const fragments = computed(() => {
-  return (useRoute().name as string).split("-").filter((n) => n !== "index");
+  return (useRoute().fullPath as string)
+    .split("/")
+    .filter(Boolean)
+    .filter((n) => n !== "index");
 });
 </script>
 
@@ -47,7 +50,7 @@ const fragments = computed(() => {
           </svg>
           <NuxtLink
             :to="`/${fragments.slice(0, i + 1).join('/')}`"
-            class="ml-1 text-xs font-medium text-gray-700 hover:text-green-600 md:ml-2 capitalize"
+            class="ml-1 text-xs font-medium text-gray-700 hover:text-viking-600 md:ml-2 capitalize"
           >
             {{ fragment }}
           </NuxtLink>
