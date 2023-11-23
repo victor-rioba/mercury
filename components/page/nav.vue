@@ -99,7 +99,7 @@ const showNav = ref(true);
   <UCard as="nav" class="relative min-w-fit">
     <NuxtLink
       to="/"
-      class="flex gap-2 items-center mb-16 justify-center text-green-500 hover:text-green-400 font-semibold"
+      class="flex gap-2 items-center mb-16 justify-center text-viking-500 hover:text-viking-400 font-semibold"
       :class="[showNav ? 'text-xl' : 'text-2xl']"
     >
       <UIcon name="i-fluent-emoji-high-contrast-shopping-cart" />
