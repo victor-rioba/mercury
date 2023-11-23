@@ -1,6 +1,70 @@
+declare type Enterprise = {
+  id: number;
+
+  name: string;
+  description: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
+declare type User = {
+  id: number;
+  enterpriseId: number;
+  createdBy: number;
+  customerOf: number;
+
+  firstName: string;
+  lastName?: string;
+  username?: string;
+  email: string;
+  image?: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
+declare type CustomerGroup = {
+  id: number;
+  enterpriseId: number;
+
+  name: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
+declare type Store = {
+  id: number;
+  enterpriseId: number;
+
+  name: string;
+  legalName?: string;
+  timezone?: string;
+  language?: string;
+  unitSystem?: string;
+  defaultWeightUnit?: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
+declare type Category = {
+  id: number;
+  enterpriseId: number;
+  storeId: number;
+
+  name: string;
+  description?: string
+  image?: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
+
 declare type Product = {
   id: number;
-  userId: string;
+  enterpriseId: string;
   storeId: string;
   parentId?: string;
 
@@ -21,13 +85,3 @@ declare type Product = {
   deletedAt?: string;
 };
 
-declare type Category = {
-  id: number;
-  userId: number;
-  storeId: number;
-
-  name: string;
-
-  createdAt: string;
-  updatedAt: string;
-};
