@@ -1,4 +1,5 @@
 import knex from "knex";
+import _ from "lodash";
 
 const db = knex({
   client: "pg",
@@ -9,8 +10,12 @@ const db = knex({
     user: process.env["POSTGRES_USER"],
     database: process.env["POSTGRES_DATABASE"],
     password: process.env["POSTGRES_PASSWORD"],
-    ssl: { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false },
   },
 });
 
-export const useDb = <T extends {}>(table: string) => db<T>(table);
+export type Table = "products" | "users";
+
+export const useDb = <T extends {}>(table: Table) => {
+  return db<T>(_.startCase(table).split(" ").join(""));
+};
