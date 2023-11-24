@@ -55,7 +55,7 @@ declare type Category = {
   storeId: number;
 
   name: string;
-  description?: string
+  description?: string;
   image?: string;
 
   createdAt: string;
@@ -66,14 +66,14 @@ declare type Product = {
   id: number;
   enterpriseId: string;
   storeId: string;
-  parentId?: string;
 
   slug?: string;
   sku?: string;
   title: string;
   price: string;
-  shortDescription: string;
+  shortDescription?: string;
   longDescription?: string;
+  available?: number;
   images: string[];
 
   categories: number[];
@@ -85,3 +85,20 @@ declare type Product = {
   deletedAt?: string;
 };
 
+declare type ProductVariant = {
+  id: number;
+  productId: string;
+
+  sku?: string;
+  title: string;
+  price: string;
+  shortDescription?: string;
+  longDescription?: string;
+  available?: number;
+  images: string[];
+
+  status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
+};

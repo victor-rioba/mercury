@@ -68,14 +68,14 @@ export function up(knex) {
       table.increments();
       table.integer("enterpriseId").unsigned();
       table.integer("storeId").unsigned();
-      table.integer("parentId").unsigned();
 
-      table.string("slug");
       table.string("sku");
+      table.string("slug");
       table.string("title");
       table.string("price");
       table.string("shortDescription");
       table.string("longDescription");
+      table.string("available");
 
       table.json("images");
       table.json("categories");
@@ -84,6 +84,51 @@ export function up(knex) {
 
       table.timestamps(true, true, true);
       table.timestamp("deletedAt");
+    })
+    .createTable("attributes", (table) => {
+      table.increments();
+
+      table.string("label");
+      table.string("name");
+      table.string("type");
+      table.string("configurable");
+
+      table.timestamps(true, true, true);
+    })
+    .createTable("attributeoptions", (table) => {
+      table.increments();
+      table.integer("attributeId").unsigned();
+
+      table.string("label");
+      table.string("value");
+
+      table.timestamps(true, true, true);
+    })
+    .createTable("variants", (table) => {
+      table.increments();
+      table.integer("productId").unsigned();
+
+      table.string("sku");
+      table.string("title");
+      table.string("price");
+      table.string("shortDescription");
+      table.string("longDescription");
+      table.string("available");
+
+      table.json("images");
+
+      table.boolean("status").default(false);
+
+      table.timestamps(true, true, true);
+    })
+    .createTable("variantattributes", (table) => {
+      table.increments();
+      table.integer("productVariantId").unsigned();
+      table.integer("productAttributeId").unsigned();
+
+      table.string("value");
+
+      table.timestamps(true, true, true);
     })
     .createTable("carts", (table) => {
       table.increments();
@@ -102,7 +147,7 @@ export function up(knex) {
       table.integer("quantity");
 
       table.timestamps(true, true, true);
-    })
+    });
 }
 
 export function down(knex) {
@@ -114,6 +159,10 @@ export function down(knex) {
     .dropTable("stores")
     .dropTable("categories")
     .dropTable("products")
+    .dropTable("attributes")
+    .dropTable("attributeoptions")
+    .dropTable("variants")
+    .dropTable("variantattributes")
     .dropTable("carts")
     .dropTable("cartitems");
 }
