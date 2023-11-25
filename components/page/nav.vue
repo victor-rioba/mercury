@@ -93,6 +93,47 @@ const navigations = [
 ];
 
 const showNav = ref(true);
+
+const { $auth } = useNuxtApp();
+
+type User = {
+  id: string;
+  given_name: string;
+  family_name: string;
+  name: string;
+  email: string;
+  picture: string;
+  updated_at: number;
+};
+
+const user = computed(() => {
+  return ($auth as { loggedIn: boolean; user: User }).user;
+});
+
+const items = [
+  [
+    {
+      label: "Account",
+      avatar: {
+        src: user.value.picture,
+      },
+    },
+  ],
+  [
+    {
+      label: "Settings",
+      icon: "i-heroicons-adjustments-horizontal-solid",
+    },
+  ],
+  [
+    {
+      label: "Logout",
+      icon: "i-heroicons-arrow-right-on-rectangle-20-solid",
+      to: "/api/logout",
+      external: true,
+    },
+  ],
+];
 </script>
 
 <template>
@@ -102,7 +143,7 @@ const showNav = ref(true);
       class="flex gap-2 items-center mb-16 justify-center text-viking-500 hover:text-viking-400 font-semibold"
       :class="[showNav ? 'text-xl' : 'text-2xl']"
     >
-      <UIcon name="i-fluent-emoji-high-contrast-shopping-cart" />
+      <UIcon name="i-solar-bag-check-broken" />
       <span v-show="showNav">mercury.io</span>
     </NuxtLink>
     <div
@@ -141,14 +182,16 @@ const showNav = ref(true);
       class="absolute bottom-0 right-0 left-0 pb-8 px-4 flex items-center"
       :class="[showNav ? 'justify-between' : 'flex-col gap-4']"
     >
-      <UAvatar
-        chip-color="primary"
-        chip-text=""
-        chip-position="top-right"
-        size="sm"
-        src="https://avatars.githubusercontent.com/u/739984?v=4"
-        alt="Avatar"
-      />
+      <UDropdown :items="items" mode="hover">
+        <UAvatar
+          chip-color="primary"
+          chip-text=""
+          chip-position="top-right"
+          size="sm"
+          :src="user.picture"
+          alt="Avatar"
+        />
+      </UDropdown>
 
       <UButton
         :padded="false"
