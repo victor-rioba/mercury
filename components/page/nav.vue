@@ -107,7 +107,7 @@ type User = {
 };
 
 const user = computed(() => {
-  return ($auth as { loggedIn: boolean; user: User }).user;
+  return ($auth as { loggedIn: boolean; user?: User }).user;
 });
 
 const items = [
@@ -115,7 +115,7 @@ const items = [
     {
       label: "Account",
       avatar: {
-        src: user.value.picture,
+        src: user.value?.picture,
       },
     },
   ],
@@ -188,7 +188,7 @@ const items = [
           chip-text=""
           chip-position="top-right"
           size="sm"
-          :src="user.picture"
+          :src="user?.picture"
           alt="Avatar"
         />
       </UDropdown>
