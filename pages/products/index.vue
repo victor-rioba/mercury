@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  middleware: ["auth-logged-in"],
+});
+
 const sort = ref({
   column: "name",
   direction: "desc",
