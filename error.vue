@@ -2,7 +2,8 @@
 const props = defineProps<{ error: any }>();
 
 if (props.error.statusCode == 401) {
-  navigateTo("/api/login", { external: true });
+  // navigateTo("/api/login", { external: true });
+  navigateTo("/home");
 }
 
 const handleError = () => clearError({ redirect: "/home" });
