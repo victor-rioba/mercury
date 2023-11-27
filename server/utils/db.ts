@@ -12,5 +12,5 @@ const db = knex({
 export type Table = "products" | "users";
 
 export const useDb = <T extends {}>(table: Table) => {
-  return db<T>(_.startCase(table).split(" ").join(""));
+  return db<T>(table.split("-").join(""));
 };
