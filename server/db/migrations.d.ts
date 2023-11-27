@@ -12,7 +12,7 @@ declare type User = {
   id: number;
   enterpriseId: number;
   createdBy: number;
-  customerOf: number;
+  storeId: number;
 
   firstName: string;
   lastName?: string;
