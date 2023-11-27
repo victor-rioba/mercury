@@ -2,6 +2,7 @@ export function up(knex) {
   return knex.schema
     .createTable("enterprises", (table) => {
       table.increments();
+      table.integer("userId").unsigned().notNullable();
 
       table.string("name");
       table.string("description");
