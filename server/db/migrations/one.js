@@ -12,7 +12,7 @@ export function up(knex) {
       table.increments();
       table.integer("enterpriseId").unsigned();
       table.integer("createdBy").unsigned();
-      table.integer("customerOf").unsigned();
+      table.integer("storeId").unsigned();
 
       table.string("firstName");
       table.string("lastName");
