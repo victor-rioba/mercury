@@ -3,7 +3,10 @@ import _ from "lodash";
 
 const db = knex({
   client: "pg",
-  connection: `${process.env.POSTGRES_URL}?ssl=true`,
+  connection:
+    process.env.NODE_ENV === "production"
+      ? `${process.env.POSTGRES_URL}?ssl=true`
+      : process.env.DEV_POSTGRES_URL,
 });
 
 export type Table = "products" | "users";
